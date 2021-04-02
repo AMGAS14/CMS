@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 
 namespace ServerApp
 {
@@ -52,6 +53,10 @@ namespace ServerApp
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+            app.UseSpa(spa => {
+                spa.Options.SourcePath = "../ClientApp";
+                spa.UseAngularCliServer("start");
+                });
         }
     }
 }
